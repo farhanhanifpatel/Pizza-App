@@ -1,0 +1,108 @@
+@import './variables.scss';
+$primary: red;
+$fontColor: white;
+body {
+    font-family: 'Lato', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: $dark;
+    // height: 4000px;
+}
+
+h1 {
+    color: $fontColor;
+}
+
+nav li:last-child a {
+    background: $primary;
+    &:hover {
+        background: $primary-hover;
+    }
+}
+
+nav li a {
+    transition: $smooth;
+    &:hover {
+        color: $primary;
+    }
+}
+
+section.hero {
+    background: $secondary;
+}
+
+.size {
+    background: $secondary;
+}
+.add-to-cart {
+    border: 2px solid $primary;
+    color: $primary;
+
+    &:hover {
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+        transition: all 0.5s ease-in-out;
+    }
+}
+.order-now {
+    border: 2px solid $primary;
+    color: $primary;
+
+    &:hover {
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+        transition: all 0.5s ease-in-out;
+    }
+}
+section.cart {
+    background: $secondary;
+    .amount {
+        color: $primary;
+    }
+}
+
+.login-user {
+    border: 2px solid $primary;
+    color: $primary;
+
+    &:hover {
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+.sign-in {
+    border: 2px solid $primary;
+    color: $primary;
+
+    &:hover {
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+.sign-up {
+    border: 2px solid $primary;
+    color: $primary;
+
+    &:hover {
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+        transition: all 0.5s ease-in-out;
+    }
+}
+
+section.login {
+    background: $secondary;
+    min-height: calc(100vh - 95px);
+}
+
+.dnt-haveaccount {
+    color: $primary-hover;
+}

@@ -1,0 +1,102 @@
+body {
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #ccc;
+}
+
+h1 {
+  color: white;
+}
+
+nav li:last-child a {
+  background: red;
+}
+nav li:last-child a:hover {
+  background: #b23301;
+}
+
+nav li a {
+  transition: all 0.3s ease-in-out;
+}
+nav li a:hover {
+  color: red;
+}
+
+section.hero {
+  background: #f8f8f8;
+}
+
+.size {
+  background: #f8f8f8;
+}
+
+.add-to-cart {
+  border: 2px solid red;
+  color: red;
+}
+.add-to-cart:hover {
+  background: red;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+.order-now {
+  border: 2px solid red;
+  color: red;
+}
+.order-now:hover {
+  background: red;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+section.cart {
+  background: #f8f8f8;
+}
+section.cart .amount {
+  color: red;
+}
+
+.login-user {
+  border: 2px solid red;
+  color: red;
+}
+.login-user:hover {
+  background: red;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+.sign-in {
+  border: 2px solid red;
+  color: red;
+}
+.sign-in:hover {
+  background: red;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+.sign-up {
+  border: 2px solid red;
+  color: red;
+}
+.sign-up:hover {
+  background: red;
+  border-color: #fff;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+section.login {
+  background: #f8f8f8;
+  min-height: calc(100vh - 95px);
+}
+
+.dnt-haveaccount {
+  color: #b23301;
+}
