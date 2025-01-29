@@ -9,7 +9,7 @@ import mongoose from 'mongoose'
 
 //Database connection
 
-const url = 'mongodb://localhost:27017/'
+const url = 'mongodb://localhost:27017/Pizza'
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
