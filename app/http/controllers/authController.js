@@ -1,10 +1,32 @@
 import User from '../../models/user.js'
 import flash from 'express-flash'
 import bcrypt from 'bcrypt'
+import passport from 'passport'
 function authController() {
     return {
         login(req, res) {
             res.render('auth/login')
+        },
+
+        postLogin(req, res, next) {
+            passport.authenticate('local', (error, user, info) => {
+                if (error) {
+                    // Fixed error variable name
+                    req.flash('error', info?.message || 'An unexpected error occurred')
+                    return next(error)
+                }
+                if (!user) {
+                    req.flash('error', info?.message || 'Invalid credentials')
+                    return res.redirect('/login')
+                }
+                req.login(user, error => {
+                    if (error) {
+                        req.flash('error', err.message || 'Login failed')
+                        return next(error)
+                    }
+                    return res.redirect('/')
+                })
+            })(req, res, next)
         },
 
         register(req, res) {

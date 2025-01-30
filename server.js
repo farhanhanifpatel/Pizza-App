@@ -9,6 +9,8 @@ import session from 'express-session'
 import flash from 'express-flash'
 import MongoDbStore from 'connect-mongo'
 import { config as Conf } from 'dotenv'
+import passport from 'passport'
+import passportInit from './app/config/passport.js'
 Conf()
 
 // Database connection
@@ -25,6 +27,8 @@ connection.once('open', () => {
 connection.on('error', err => {
     console.log('❌ Error: ' + err)
 })
+
+passportInit(passport)
 
 // ✅ Corrected MongoDB session store
 let mongoStore = MongoDbStore.create({
@@ -54,6 +58,8 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use(passport.initialize())
+app.use(passport.session())
 const PORT = process.env.PORT || 4000
 
 app.use(flash())
