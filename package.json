@@ -23,7 +23,8 @@
         "express-flash": "^0.0.2",
         "express-session": "^1.18.1",
         "mongoose": "^8.9.5",
-        "nodemon": "^3.1.9"
+        "nodemon": "^3.1.9",
+        "noty": "^3.1.4"
     },
     "devDependencies": {
         "cross-env": "^7.0.3",

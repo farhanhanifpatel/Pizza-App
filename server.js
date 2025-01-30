@@ -33,6 +33,7 @@ let mongoStore = MongoDbStore.create({
 })
 
 app.use(express.json())
+
 // Session configuration
 app.use(
     session({
@@ -45,6 +46,11 @@ app.use(
         },
     })
 )
+
+app.use((req, res, next) => {
+    res.locals.session = req.session
+    next()
+})
 
 const PORT = process.env.PORT || 4000
 
