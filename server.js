@@ -34,6 +34,8 @@ let mongoStore = MongoDbStore.create({
 
 app.use(express.json())
 
+app.use(express.urlencoded({ extended: false }))
+
 // Session configuration
 app.use(
     session({

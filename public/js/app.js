@@ -10131,7 +10131,6 @@ var addToCart = document.querySelectorAll('.add-to-cart');
 var cartCounter = document.querySelector('#cartCounter');
 function updateCart(pizza) {
   axios__WEBPACK_IMPORTED_MODULE_1__["default"].post('/update-cart', pizza).then(function (res) {
-    console.log('-->', res);
     cartCounter.innerText = res.data.totalQty;
     new noty__WEBPACK_IMPORTED_MODULE_0__({
       type: 'success',
