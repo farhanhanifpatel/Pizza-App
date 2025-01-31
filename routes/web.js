@@ -2,6 +2,7 @@ import homeController from '../app/http/controllers/homeController.js'
 import authController from '../app/http/controllers/authController.js'
 import cartController from '../app/http/controllers/customers/cartController.js'
 import guest from '../app/http/middleware/guest.js'
+import orderController from '../app/http/controllers/customers/orderController.js'
 function initRoutes(app) {
     app.get('/', homeController().index)
 
@@ -18,6 +19,10 @@ function initRoutes(app) {
     app.get('/cart', cartController().index)
 
     app.post('/update-cart', cartController().update)
+
+    app.post('/orders', orderController().store)
+
+    app.get('/customers/orders', orderController().index)
 }
 
 export default initRoutes

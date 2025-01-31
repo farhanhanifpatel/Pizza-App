@@ -933,3 +933,7 @@ section.login {
   border-radius: 100px !important;
   padding-left: 8px !important;
 }
+
+a.link {
+  color: red;
+}
