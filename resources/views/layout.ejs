@@ -18,8 +18,21 @@
                 <ul class="flex items-center">
                     <li class="ml-6"><a href="#">Menu</a></li>
                     <li class="ml-6"><a href="#">Offers</a></li>
-                    <li class="ml-6"><a href="#">Register</a></li>
+                    <% if (user) { %>
+                    <li class="ml-6">
+                        <a
+                            href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout').submit();"
+                        >
+                            Logout
+                        </a>
+                    </li>
+                    <form id="logout" action="/logout" method="POST"></form>
+
+                    <% } else { %>
+                    <li class="ml-6"><a href="/register">Register</a></li>
                     <li class="ml-6"><a href="/login">Login</a></li>
+                    <% } %>
                     <li class="ml-6">
                         <a
                             href="/cart"

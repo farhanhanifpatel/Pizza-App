@@ -28,8 +28,6 @@ connection.on('error', err => {
     console.log('❌ Error: ' + err)
 })
 
-passportInit(passport)
-
 // ✅ Corrected MongoDB session store
 let mongoStore = MongoDbStore.create({
     mongoUrl: url, // ✅ Use `mongoUrl`
@@ -53,13 +51,16 @@ app.use(
     })
 )
 
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use((req, res, next) => {
     res.locals.session = req.session
+    res.locals.user = req.user
     next()
 })
 
-app.use(passport.initialize())
-app.use(passport.session())
 const PORT = process.env.PORT || 4000
 
 app.use(flash())
