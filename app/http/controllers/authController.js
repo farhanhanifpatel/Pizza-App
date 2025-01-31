@@ -9,7 +9,13 @@ function authController() {
         },
 
         postLogin(req, res, next) {
+            const { email, password } = req.body
             let oldCart = req.session.cart
+
+            if (!email || !password) {
+                req.flash('error', 'All fields must be required')
+                return res.redirect('/login')
+            }
 
             passport.authenticate('local', (error, user, info) => {
                 if (error) {
