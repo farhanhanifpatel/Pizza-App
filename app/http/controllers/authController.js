@@ -9,9 +9,10 @@ function authController() {
         },
 
         postLogin(req, res, next) {
+            let oldCart = req.session.cart
+
             passport.authenticate('local', (error, user, info) => {
                 if (error) {
-                    // Fixed error variable name
                     req.flash('error', info?.message || 'An unexpected error occurred')
                     return next(error)
                 }
@@ -21,9 +22,12 @@ function authController() {
                 }
                 req.login(user, error => {
                     if (error) {
-                        req.flash('error', err.message || 'Login failed')
+                        req.flash('error', error.message || 'Login failed')
                         return next(error)
                     }
+
+                    req.session.cart = oldCart
+
                     return res.redirect('/')
                 })
             })(req, res, next)
@@ -73,14 +77,22 @@ function authController() {
             }
         },
 
+        // logout(req, res, next) {
+        //     req.logout()
+        //     return res.redirect('/login')
+        // },
+
         logout(req, res, next) {
+            let oldCart = req.session.cart
             req.logout(err => {
                 if (err) {
                     return next(err)
                 }
-                req.session.destroy(() => {
-                    res.redirect('/login')
-                })
+                // req.session.destroy(() => {
+                //     res.redirect('/login')
+                // })
+                req.session.cart = oldCart
+                return res.redirect('/login')
             })
         },
     }
