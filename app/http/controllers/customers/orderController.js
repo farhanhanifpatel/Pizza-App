@@ -19,7 +19,8 @@ function orderController() {
                 .save()
                 .then(result => {
                     req.flash('success', 'successfully placed the order')
-                    return res.redirect('/')
+                    delete req.session.cart
+                    return res.redirect('/customers/orders')
                 })
                 .catch(err => {
                     req.flash('error', 'Something went wrong')
@@ -28,7 +29,7 @@ function orderController() {
         },
 
         async index(req, res) {
-            const orders = await Order.find({ customerId: req.user._id })
+            const orders = await Order.find({ customerId: req.user._id }, null, { sort: { createdAt: -1 } })
             res.render('customers/orders', { orders: orders, moment: moment })
         },
     }

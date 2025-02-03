@@ -3,6 +3,10 @@ import authController from '../app/http/controllers/authController.js'
 import cartController from '../app/http/controllers/customers/cartController.js'
 import guest from '../app/http/middleware/guest.js'
 import orderController from '../app/http/controllers/customers/orderController.js'
+import auth from '../app/http/middleware/auth.js'
+import admin from '../app/http/middleware/admin.js'
+import adminController from '../app/http/controllers/admin/orderController.js'
+
 function initRoutes(app) {
     app.get('/', homeController().index)
 
@@ -20,9 +24,14 @@ function initRoutes(app) {
 
     app.post('/update-cart', cartController().update)
 
-    app.post('/orders', orderController().store)
+    app.post('/orders', auth, orderController().store)
 
-    app.get('/customers/orders', orderController().index)
+    app.get('/customers/orders', auth, orderController().index)
+
+    app.get('/admin/orders', auth, adminController().index)
+
+    app.get('/admin/orders', admin, adminController().index)
+    // app.post('/admin/order/status', admin, statusController().update)
 }
 
 export default initRoutes

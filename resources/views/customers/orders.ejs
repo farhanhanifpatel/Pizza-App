@@ -1,13 +1,15 @@
 <section class="orders light-section">
     <div class="container mx-auto pt-12">
         <h1 class="font-bold text-lg mb-4">All orders</h1>
+        <% if (messages.success) {%>
         <div
             id="success-alert"
             class="flex items-center bg-green-500 text-white text-sm font-bold px-4 py-3"
             role="alert"
         >
-            <p>Order successfully p[laced</p>
+            <p id="">Order successfully placed</p>
         </div>
+        <%}%>
         <table class="w-full table-auto bg-white">
             <thead>
                 <tr>
