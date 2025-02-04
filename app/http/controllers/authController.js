@@ -3,6 +3,10 @@ import flash from 'express-flash'
 import bcrypt from 'bcrypt'
 import passport from 'passport'
 function authController() {
+    const _getRedirectUrl = req => {
+        return req.user.role === 'admin' ? '/admin/order' : '/customers/orders'
+    }
+
     return {
         login(req, res) {
             res.render('auth/login')
@@ -26,15 +30,13 @@ function authController() {
                     req.flash('error', info?.message || 'Invalid credentials')
                     return res.redirect('/login')
                 }
-                req.login(user, error => {
-                    if (error) {
-                        req.flash('error', error.message || 'Login failed')
-                        return next(error)
+                req.login(user, err => {
+                    if (err) {
+                        req.flash('error', info.message)
+                        return next(err)
                     }
 
-                    req.session.cart = oldCart
-
-                    return res.redirect('/')
+                    return res.redirect(_getRedirectUrl(req))
                 })
             })(req, res, next)
         },
