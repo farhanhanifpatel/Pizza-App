@@ -1,19 +1,21 @@
 import axios from 'axios'
-import order from '../../app/models/order'
+import moment from 'moment'
 
 function initAdmin() {
-    const orderTableBody = document.querySelectorAll('#orderTableBody')
+    const orderTableBody = document.querySelector('#orderTableBody')
 
     let orders = []
     let markup
-
+    console.log('This is yable body', orderTableBody)
     axios
-        .get('/admin/orders', {
+        .get('/admin/order', {
             headers: {
                 'x-Requested-With': 'XMLHttpRequest',
             },
         })
         .then(res => {
+            console.log('Fetched Orders:', res.data) // Debugging
+
             orders = res.data
             markup = generateMarkup(orders)
             orderTableBody.innerHTML = markup
@@ -27,7 +29,7 @@ function initAdmin() {
         return parsedItems
             .map(menuItem => {
                 return `
-                <p>${menuItem.item.name} - ${menuItem.qty} pcs </p>
+                <p>${menuItem.items.name} - ${menuItem.qty} pcs </p>
             `
             })
             .join('')

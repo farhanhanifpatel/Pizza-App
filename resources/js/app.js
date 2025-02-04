@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Noty from 'noty'
-import { initAdmin } from './admin'
+import initAdmin from './admin.js'
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
 function updateCart(pizza) {
@@ -38,3 +38,5 @@ addToCart.forEach(btn => {
         console.log(pizza)
     })
 })
+
+initAdmin()

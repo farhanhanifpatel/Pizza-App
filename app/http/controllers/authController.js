@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import passport from 'passport'
 function authController() {
     const _getRedirectUrl = req => {
-        return req.user.role === 'admin' ? '/admin/orders' : '/customer/orders'
+        return req.user.role === 'admin' ? '/admin/order' : '/customers/orders'
     }
 
     return {
@@ -30,7 +30,7 @@ function authController() {
                     req.flash('error', info?.message || 'Invalid credentials')
                     return res.redirect('/login')
                 }
-                req.logIn(user, err => {
+                req.login(user, err => {
                     if (err) {
                         req.flash('error', info.message)
                         return next(err)
