@@ -32006,7 +32006,7 @@ function initAdmin() {
   var orderTableBody = document.querySelector('#orderTableBody');
   var orders = [];
   var markup;
-  console.log('This is yable body', orderTableBody);
+  // console.log('This is yable body', orderTableBody)
   axios__WEBPACK_IMPORTED_MODULE_1__["default"].get('/admin/order', {
     headers: {
       'x-Requested-With': 'XMLHttpRequest'
@@ -32044,16 +32044,18 @@ function initAdmin() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var noty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! noty */ "./node_modules/noty/lib/noty.js");
-/* harmony import */ var _admin_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./admin.js */ "./resources/js/admin.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var _admin_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./admin.js */ "./resources/js/admin.js");
+
 
 
 
 var addToCart = document.querySelectorAll('.add-to-cart');
 var cartCounter = document.querySelector('#cartCounter');
 function updateCart(pizza) {
-  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('/update-cart', pizza).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('/update-cart', pizza).then(function (res) {
     cartCounter.innerText = res.data.totalQty;
     new noty__WEBPACK_IMPORTED_MODULE_0__({
       type: 'success',
@@ -32083,7 +32085,66 @@ addToCart.forEach(function (btn) {
     console.log(pizza);
   });
 });
-(0,_admin_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
+
+// change order status
+// let statuses = document.querySelectorAll('.status_line')
+// let hiddenInput = document.querySelector('#hiddenInput')
+
+// console.error('-<<>', statuses, hiddenInput)
+// // let order = hiddenInput ? hiddenInput.value : null
+// let order = hiddenInput ? hiddenInput.value.trim() : null
+// order = JSON.parse(order)
+// console.error('-<<>', order, hiddenInput)
+// let time = document.createElement('small')
+
+// function updateStatus(order) {
+//     let stepCompleted = true
+//     statuses.forEach(status => {
+//         let dataProp = status.dataset.status
+//         if (stepCompleted) {
+//             status.classList.add('step-completed')
+//         }
+//         if (dataProp === order.status) {
+//             stepCompleted = false
+//             time.innerText = moment(order.updatedAt).format('hh:mm A')
+//             status.appendChild(time)
+
+//             if (status.nextElementSibling) {
+//                 status.nextElementSibling.classList.add('current')
+//             }
+//         }
+//     })
+// }
+
+var statuses = document.querySelectorAll('.status_line');
+var hiddenInput = document.querySelector('#hiddenInput');
+console.error('-<<>', document.querySelectorAll('.status_line'));
+var order = hiddenInput ? hiddenInput.value : null;
+order = JSON.parse(order);
+var time = document.createElement('small');
+function updateStatus(order) {
+  statuses.forEach(function (status) {
+    status.classList.remove('step-completed');
+    status.classList.remove('current');
+  });
+  var stepCompleted = true;
+  statuses.forEach(function (status) {
+    var dataProp = status.dataset.status;
+    if (stepCompleted) {
+      status.classList.add('step-completed');
+    }
+    if (dataProp === order.status) {
+      stepCompleted = false;
+      time.innerText = moment__WEBPACK_IMPORTED_MODULE_1__(order.updatedAt).format('hh:mm A');
+      status.appendChild(time);
+      if (status.nextElementSibling) {
+        status.nextElementSibling.classList.add('current');
+      }
+    }
+  });
+}
+updateStatus(order);
+(0,_admin_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
 
 /***/ })
 

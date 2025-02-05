@@ -12,10 +12,10 @@ function orderController() {
                 console.log('🟢 Orders fetched from DB:', orders) // Debugging
 
                 if (req.xhr) {
-                    console.log('----1', orders)
+                    // console.log('----1', orders)
                     return res.json(orders)
                 } else {
-                    console.log('----2', orders)
+                    // console.log('----2', orders)
                     return res.render('admin/order', { orders })
                 }
             } catch (err) {

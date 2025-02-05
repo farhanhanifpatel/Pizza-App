@@ -6,6 +6,7 @@ import orderController from '../app/http/controllers/customers/orderController.j
 import auth from '../app/http/middleware/auth.js'
 import admin from '../app/http/middleware/admin.js'
 import adminController from '../app/http/controllers/admin/orderController.js'
+import statusController from '../app/http/controllers/admin/statusController.js'
 
 function initRoutes(app) {
     app.get('/', homeController().index)
@@ -28,10 +29,11 @@ function initRoutes(app) {
 
     app.get('/customers/orders', auth, orderController().index)
 
+    app.get('/customers/orders/:id', auth, orderController().show)
+
     app.get('/admin/order', admin, adminController().index)
 
-    // app.get('/admin/orders', admin, adminController().index)
-    // app.post('/admin/order/status', admin, statusController().update)
+    app.post('/admin/order/status', admin, statusController().update)
 }
 
 export default initRoutes
