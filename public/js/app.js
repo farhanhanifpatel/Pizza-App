@@ -32118,7 +32118,7 @@ addToCart.forEach(function (btn) {
 
 var statuses = document.querySelectorAll('.status_line');
 var hiddenInput = document.querySelector('#hiddenInput');
-console.error('-<<>', document.querySelectorAll('.status_line'));
+console.error('-<<>', hiddenInput, document.querySelectorAll('.status_line'));
 var order = hiddenInput ? hiddenInput.value : null;
 order = JSON.parse(order);
 var time = document.createElement('small');

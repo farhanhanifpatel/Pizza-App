@@ -2,6 +2,7 @@ import axios from 'axios';
 import Noty from 'noty';
 import moment from 'moment';
 import initAdmin from './admin.js';
+import { Server } from 'socket.io';
 let addToCart = document.querySelectorAll('.add-to-cart');
 let cartCounter = document.querySelector('#cartCounter');
 function updateCart(pizza) {
@@ -70,10 +71,12 @@ addToCart.forEach((btn) => {
 //     })
 // }
 
+initAdmin();
+
 let statuses = document.querySelectorAll('.status_line');
 let hiddenInput = document.querySelector('#hiddenInput');
 
-console.error('-<<>', document.querySelectorAll('.status_line'));
+console.error('-<<>', hiddenInput, document.querySelectorAll('.status_line'));
 let order = hiddenInput ? hiddenInput.value : null;
 order = JSON.parse(order);
 let time = document.createElement('small');
@@ -101,4 +104,13 @@ function updateStatus(order) {
 }
 updateStatus(order);
 
-initAdmin();
+let socket = io();
+
+socket.emit('--------->', 'join', `order_${order._id}`);
+if (order) {
+  socket.emit('join', `order_${order._id}`);
+}
+
+// socket.on('connect', () => {
+//   console.log('Connected with ID:', socket.id);
+// });
