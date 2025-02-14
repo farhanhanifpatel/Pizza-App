@@ -13,7 +13,7 @@ import passport from 'passport';
 import passportInit from './app/config/passport.js';
 import { Server } from 'socket.io';
 import http from 'http';
-
+import Emitter from 'events';
 Conf();
 
 // Database connection
@@ -37,6 +37,8 @@ let mongoStore = MongoDbStore.create({
   collectionName: 'sessions',
 });
 
+const eventEmitter = new Emitter();
+app.set('eventEmitter', eventEmitter);
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
@@ -84,11 +86,18 @@ const io = new Server(server);
 io.on('connection', (socket) => {
   console.log('--->', socket.id);
   socket.on('join', (roomName) => {
-    console.log('--->2', socket.id, roomName);
+    // console.log('--->2', socket.id, roomName);
     socket.join(roomName);
   });
 });
 
 server.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
+});
+eventEmitter.on('orderUpdated', (data) => {
+  io.to(`order_${data.id}`).emit('orderUpdated', data);
+});
+
+eventEmitter.on('orderPlaced', (data) => {
+  io.to('adminRoom').emit('orderPlaced', data);
 });

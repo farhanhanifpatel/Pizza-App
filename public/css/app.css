@@ -829,15 +829,11 @@
 body {
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
-  color: #ccc;
-}
-
-h1 {
-  color: white;
+  color: #232323;
 }
 
 nav li:last-child a {
-  background: red;
+  background: #fe5f1e;
 }
 nav li:last-child a:hover {
   background: #b23301;
@@ -847,7 +843,7 @@ nav li a {
   transition: all 0.3s ease-in-out;
 }
 nav li a:hover {
-  color: red;
+  color: #fe5f1e;
 }
 
 section.hero {
@@ -859,22 +855,22 @@ section.hero {
 }
 
 .add-to-cart {
-  border: 2px solid red;
-  color: red;
+  border: 2px solid #fe5f1e;
+  color: #fe5f1e;
 }
 .add-to-cart:hover {
-  background: red;
+  background: #fe5f1e;
   border-color: #fff;
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
 .order-now {
-  border: 2px solid red;
-  color: red;
+  border: 2px solid #fe5f1e;
+  color: #fe5f1e;
 }
 .order-now:hover {
-  background: red;
+  background: #fe5f1e;
   border-color: #fff;
   color: #fff;
   transition: all 0.5s ease-in-out;
@@ -884,37 +880,37 @@ section.cart {
   background: #f8f8f8;
 }
 section.cart .amount {
-  color: red;
+  color: #fe5f1e;
 }
 
 .login-user {
-  border: 2px solid red;
-  color: red;
+  border: 2px solid #fe5f1e;
+  color: #fe5f1e;
 }
 .login-user:hover {
-  background: red;
+  background: #fe5f1e;
   border-color: #fff;
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
 .sign-in {
-  border: 2px solid red;
-  color: red;
+  border: 2px solid #fe5f1e;
+  color: #fe5f1e;
 }
 .sign-in:hover {
-  background: red;
+  background: #fe5f1e;
   border-color: #fff;
   color: #fff;
   transition: all 0.5s ease-in-out;
 }
 
 .sign-up {
-  border: 2px solid red;
-  color: red;
+  border: 2px solid #fe5f1e;
+  color: #fe5f1e;
 }
 .sign-up:hover {
-  background: red;
+  background: #fe5f1e;
   border-color: #fff;
   color: #fff;
   transition: all 0.5s ease-in-out;
@@ -935,7 +931,7 @@ section.login {
 }
 
 a.link {
-  color: red;
+  color: #fe5f1e;
 }
 
 section.status {
@@ -958,7 +954,6 @@ section.status {
 .status-box ul li span {
   position: relative;
   padding-left: 20px;
-  color: #ccc;
 }
 
 .status-box ul li span:after {
@@ -966,7 +961,7 @@ section.status {
   position: absolute;
   left: -10px;
   top: 50%;
-  background: #ccc;
+  background: #232323;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -1005,7 +1000,7 @@ section.status {
   content: "\f582";
 }
 
-.status-box ul li:before {
+.status-box ul li {
   position: relative;
 }
 
@@ -1016,7 +1011,7 @@ section.status {
   left: -6px;
   width: 2px;
   height: 100%;
-  background: #ccc;
+  background: #232323;
   margin-top: 10px;
 }
 
@@ -1037,11 +1032,11 @@ section.status {
 }
 
 .status-box ul li.current span {
-  color: red;
+  color: #fe5f1e;
 }
 
 .status-box ul li.current span:after {
-  background: red;
+  background: #fe5f1e;
 }
 
 .status-box ul li small {

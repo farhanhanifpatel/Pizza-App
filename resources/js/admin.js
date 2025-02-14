@@ -1,7 +1,8 @@
 import axios from 'axios';
 import moment from 'moment';
 
-function initAdmin() {
+import Noty from 'noty';
+function initAdmin(socket) {
   const orderTableBody = document.querySelector('#orderTableBody');
 
   let orders = [];
@@ -14,7 +15,7 @@ function initAdmin() {
       },
     })
     .then((res) => {
-      console.log('Fetched Orders:', res.data); // Debugging
+      // console.log('Fetched Orders:', res.data); // Debugging
 
       orders = res.data;
       markup = generateMarkup(orders);
@@ -101,6 +102,18 @@ function initAdmin() {
       })
       .join('');
   }
+
+  socket.on('orderPlaced', (order) => {
+    new Noty({
+      type: 'success',
+      timeout: 1000,
+      text: 'New Order!',
+      progressBar: false,
+    }).show();
+    orders.unshift(order);
+    orderTableBody.innerHTML = '';
+    orderTableBody.innerHTML = generateMarkup(orders);
+  });
 }
 
 export default initAdmin;
