@@ -32134,13 +32134,14 @@ function updateStatus(order) {
 }
 updateStatus(order);
 var socket = io();
-(0,_admin_js__WEBPACK_IMPORTED_MODULE_2__["default"])(socket);
+
 // socket.emit('--------->', 'join', `order_${order._id}`);
 if (order) {
   socket.emit('join', "order_".concat(order._id));
 }
 var adminArea = window.location.pathname;
 if (adminArea.includes('admin')) {
+  (0,_admin_js__WEBPACK_IMPORTED_MODULE_2__["default"])(socket);
   socket.emit('join', 'adminRoom');
 }
 socket.on('orderUpdated', function (data) {

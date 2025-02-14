@@ -74,7 +74,7 @@ function updateStatus(order) {
 updateStatus(order);
 
 let socket = io();
-initAdmin(socket);
+
 // socket.emit('--------->', 'join', `order_${order._id}`);
 if (order) {
   socket.emit('join', `order_${order._id}`);
@@ -82,6 +82,7 @@ if (order) {
 
 let adminArea = window.location.pathname;
 if (adminArea.includes('admin')) {
+  initAdmin(socket);
   socket.emit('join', 'adminRoom');
 }
 socket.on('orderUpdated', (data) => {
