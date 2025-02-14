@@ -41,36 +41,6 @@ addToCart.forEach((btn) => {
   });
 });
 
-// change order status
-// let statuses = document.querySelectorAll('.status_line')
-// let hiddenInput = document.querySelector('#hiddenInput')
-
-// console.error('-<<>', statuses, hiddenInput)
-// // let order = hiddenInput ? hiddenInput.value : null
-// let order = hiddenInput ? hiddenInput.value.trim() : null
-// order = JSON.parse(order)
-// console.error('-<<>', order, hiddenInput)
-// let time = document.createElement('small')
-
-// function updateStatus(order) {
-//     let stepCompleted = true
-//     statuses.forEach(status => {
-//         let dataProp = status.dataset.status
-//         if (stepCompleted) {
-//             status.classList.add('step-completed')
-//         }
-//         if (dataProp === order.status) {
-//             stepCompleted = false
-//             time.innerText = moment(order.updatedAt).format('hh:mm A')
-//             status.appendChild(time)
-
-//             if (status.nextElementSibling) {
-//                 status.nextElementSibling.classList.add('current')
-//             }
-//         }
-//     })
-// }
-
 let statuses = document.querySelectorAll('.status_line');
 let hiddenInput = document.querySelector('#hiddenInput');
 
@@ -125,5 +95,4 @@ socket.on('orderUpdated', (data) => {
     text: 'Order Updated',
     progressBar: false,
   }).show();
-  console.log(data);
 });
